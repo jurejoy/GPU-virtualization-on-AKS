@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest
+  labels:
+    app: resnest
+spec:
+  containers:
+  - name: resnest
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+      requests:
+        nvidia.com/gpu: 1
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+  tolerations:
+  - key: "nvidia.com/gpu"
+    operator: "Exists"
+    effect: "NoSchedule"
+  # Removing the nodeSelector to allow scheduling on any node with GPUs

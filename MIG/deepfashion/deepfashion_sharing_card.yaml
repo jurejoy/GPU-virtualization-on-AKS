@@ -1,0 +1,256 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion1
+  labels:
+    app: deepfashion1
+spec:
+  containers:
+  - name: deepfashion1
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12 # identifies 12% GPU memory each physical GPU allocates to the pod
+        nvidia.com/gpucores: 12 # identifies 12% GPU GPU core each physical GPU allocates to the pod
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion2
+  labels:
+    app: deepfashion2
+spec:
+  containers:
+  - name: deepfashion2
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12 # identifies 12% GPU memory each physical GPU allocates to the pod
+        nvidia.com/gpucores: 12 # identifies 12% GPU GPU core each physical GPU allocates to the pod
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion3
+  labels:
+    app: deepfashion3
+spec:
+  containers:
+  - name: deepfashion3
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion4
+  labels:
+    app: deepfashion4
+spec:
+  containers:
+  - name: deepfashion4
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion5
+  labels:
+    app: deepfashion5
+spec:
+  containers:
+  - name: deepfashion5
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion6
+  labels:
+    app: deepfashion6
+spec:
+  containers:
+  - name: deepfashion6
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion7
+  labels:
+    app: deepfashion7
+spec:
+  containers:
+  - name: deepfashion7
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: deepfashion8
+  labels:
+    app: deepfashion8
+spec:
+  containers:
+  - name: deepfashion8
+    image: renjie.azurecr.io/deepfashion-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    env:
+    - name: GPU_CORE_UTILIZATION_POLICY
+      value: "force"
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+

@@ -1,0 +1,6 @@
+.env
+MIG/HAMi/
+MIG/deepfashion/Anno_coarse/
+MIG/deepfashion/Anno_fine/
+MIG/deepfashion/img.zip
+FinetuneLLM/data/

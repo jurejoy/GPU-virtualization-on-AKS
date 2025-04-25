@@ -1,0 +1,232 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest1
+  labels:
+    app: resnest1
+spec:
+  containers:
+  - name: resnest1
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12 # identifies 12% GPU memory each physical GPU allocates to the pod
+        nvidia.com/gpucores: 12 # identifies 12% GPU GPU core each physical GPU allocates to the pod
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest2
+  labels:
+    app: resnest2
+spec:
+  containers:
+  - name: resnest2
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12 # identifies 12% GPU memory each physical GPU allocates to the pod
+        nvidia.com/gpucores: 12 # identifies 12% GPU GPU core each physical GPU allocates to the pod
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest3
+  labels:
+    app: resnest3
+spec:
+  containers:
+  - name: resnest3
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest4
+  labels:
+    app: resnest4
+spec:
+  containers:
+  - name: resnest4
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest5
+  labels:
+    app: resnest5
+spec:
+  containers:
+  - name: resnest5
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest6
+  labels:
+    app: resnest6
+spec:
+  containers:
+  - name: resnest6
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest7
+  labels:
+    app: resnest7
+spec:
+  containers:
+  - name: resnest7
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: resnest8
+  labels:
+    app: resnest8
+spec:
+  containers:
+  - name: resnest8
+    image: renjie.azurecr.io/resnet-gpu-image:latest
+    command: ["sleep"]
+    args: ["infinity"]
+    stdin: true
+    tty: true
+    resources:
+      limits:
+        nvidia.com/gpu: 1
+        nvidia.com/gpumem-percentage: 12
+        nvidia.com/gpucores: 12
+    volumeMounts:
+    - name: shm
+      mountPath: /dev/shm
+  volumes:
+  - name: shm
+    emptyDir:
+      medium: Memory
+      sizeLimit: 32Gi
+  restartPolicy: OnFailure
+

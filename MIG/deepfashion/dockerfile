@@ -1,0 +1,63 @@
+# Base image with CUDA support
+FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu20.04
+
+# Set environment variables
+ENV DEBIAN_FRONTEND=noninteractive
+ENV PYTHONUNBUFFERED=1
+ENV PATH="/usr/local/cuda/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+
+# Install essential packages
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    cmake \
+    git \
+    curl \
+    ca-certificates \
+    libjpeg-dev \
+    libpng-dev \
+    python3-dev \
+    python3-pip \
+    python3-setuptools \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install nvtop (system package)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nvtop || echo "nvtop installation failed, continuing anyway"
+
+# Upgrade pip
+RUN pip3 install --no-cache-dir --upgrade pip
+
+# Install common Python packages
+RUN pip3 install --no-cache-dir \
+    numpy \
+    scipy \
+    pandas \
+    scikit-learn \
+    matplotlib \
+    torch \
+    torchvision \
+    tensorboard
+
+# Install additional Python packages
+RUN pip install tqdm torch Pillow numpy torchvision fvcore
+RUN pip install resnest --pre
+
+# Create app directory
+RUN mkdir -p /home/harry/ResNeSt
+WORKDIR /home/harry/ResNeSt
+
+# Copy files from the build context to the working directory
+# Files listed in .dockerignore will be excluded before being sent to Docker daemon
+COPY . .
+
+# Install resnest
+RUN pip install resnest --pre
+
+# Set up entrypoint
+CMD ["/bin/bash"]
+
+# Runtime configuration for NVIDIA GPU
+ENV NVIDIA_VISIBLE_DEVICES=all
+ENV NVIDIA_DRIVER_CAPABILITIES=compute,utility
