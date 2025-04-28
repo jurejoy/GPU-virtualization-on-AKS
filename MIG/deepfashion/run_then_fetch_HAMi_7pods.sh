@@ -3,14 +3,14 @@
 start_time=$(date +%s)
 
 # Define pod names in an array.
-pods=(deepfashion1 deepfashion2 deepfashion3 deepfashion4 deepfashion5 deepfashion6 deepfashion7 deepfashion8)
+pods=(deepfashion1 deepfashion2 deepfashion3 deepfashion4 deepfashion5 deepfashion6 deepfashion7)
 
 # Step 1: Run the commands in each pod simultaneously.
 echo "Starting command execution in pods..."
 for pod in "${pods[@]}"; do
   echo "Starting the Python command in $pod..."
   # Execute the command inside the pod in the background.
-  kubectl exec "$pod" -- bash -c "python3 deepfashion_batch.py > output.txt 2>&1" &
+  kubectl exec "$pod" -- bash -c "python3 deepfashion_batch.py > output_HAMi_7pods.txt 2>&1" &
   echo "Command started on $pod."
 done
 
@@ -33,9 +33,9 @@ echo "----------------------------------------"
 echo "Retrieving log files..."
 counter=1
 for pod in "${pods[@]}"; do
-  local_filename="output${counter}.txt"
+  local_filename="output${counter}_HAMi_7pods.txt"
   echo "Copying log from $pod to local file: $local_filename"
-  kubectl cp "$pod":/home/harry/ResNeSt/output.txt "$local_filename"
+  kubectl cp "$pod":/home/harry/ResNeSt/output_HAMi_7pods.txt "$local_filename"
   ((counter++))
 done
 

@@ -1,4 +1,3 @@
-
 # AKS cluster Preparation #
 ## 1. install the AKS GPU Node pool ##
 ```
@@ -36,6 +35,18 @@ az aks nodepool update --cluster-name resnest --resource-group resnest --name gp
 ```
 kubectl describe node -l agentpool=gpu | grep -i nvidia.com
 ```
+
+## 5. Disable MIG and roll back to a single GPU instance ##
+```
+# Remove the MIG configuration label
+az aks nodepool update --cluster-name resnest --resource-group resnest --name gpu --labels "nvidia.com/mig.config="
+
+# Patch the cluster policy to disable MIG
+kubectl patch clusterpolicies.nvidia.com/cluster-policy --type='json' -p='[{"op":"replace","path":"/spec/mig/strategy","value":"none"}]'
+
+# Wait for the node to update (this may take a few minutes)
+kubectl get nodes -l agentpool=gpu -w
+```
 <br>
 <br>
 <br>
@@ -71,7 +82,9 @@ kubectl port-forward -n kube-system service/hami-device-plugin-monitor 31992:319
 
 ## Create a gpu-debug pod. ## 
 ```
-NODE_NAME=$(kubectl get nodes -l mig.nvidia.com/enabled=true -o jsonpath='{.items[0].metadata.name}')
+# Get the name of a node with "gpu" in the name
+NODE_NAME=$(kubectl get nodes -o name | grep -i gpu | sed 's/node\///' | head -1)
+
 
 # Create a debug pod to access the node
 cat <<EOF | kubectl apply -f -
@@ -137,7 +150,7 @@ docker run -it --rm --gpus all --shm-size=32g deepfashion-gpu-image
 ```
 
 
-# 4. Tag and push to acr #
+## 4. Tag and push to acr ##
 ```
 # Tag the docker image
 docker tag deepfashion-gpu-image:latest renjie.azurecr.io/deepfashion-gpu-image:latest
@@ -160,3 +173,11 @@ kubectl apply -f deepfashion_sharing_card.yaml
 ./run_then_fetch.sh
 ```
 
+## Run MIG 7 pods Benchmark ##
+```
+# follow MIG configuration, set to "all-1g.12gb" ###
+# copy the deepfashion_batch.py to all the pods
+./copy_script_MIG.sh
+# run the deepfashion_batch.py in parallel on all pods
+./run_then_fetch_MIG.sh
+```
