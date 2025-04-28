@@ -1,5 +1,7 @@
 .env
+MIG/deepfashion/output*
 MIG/HAMi/
+MIG/dcgm-exporter
 MIG/deepfashion/Anno_coarse/
 MIG/deepfashion/Anno_fine/
 MIG/deepfashion/img.zip
